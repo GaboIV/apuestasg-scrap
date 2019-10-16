@@ -9,7 +9,7 @@ $ejecutar_paginacion = $conexion->query($consulta);
 
 $regisdivo = $ejecutar_paginacion->fetch_assoc();
 
-$id_wihi_liga_ori = $regisdivo["id_wihi_liga"];
+$id_wihi_liga_ori = $regisdivo["name_uk"];
 $country = $regisdivo["country_id"];
 
 $url_liga = $regisdivo["url"];
@@ -31,7 +31,7 @@ if ($url_liga == "") {
 			break;
 		case "baseball":
 			$id_categoria = "2";
-			$id_ta = "4";
+			$id_ta = "1";
 			break;
 		case "basketball":
 			$id_categoria = "3";
@@ -271,7 +271,7 @@ if (!empty($html)) {
 										$regs_con_part1 = $ex_con_part1->num_rows;
 
 										if ($regs_con_part1 == '0') {
-											$con_part2 = "INSERT INTO teams (name_uk, name, country_id) VALUES ('$equipo1','$equipo1', '$country)";
+											$con_part2 = "INSERT INTO teams (name_uk, name, country_id) VALUES ('$equipo1','$equipo1', '$country')";
 											$ex_con_part2 = $conexion->query($con_part2);
 											if ($ex_con_part2) {
 												$id_equipo = $conexion->insert_id;
@@ -293,7 +293,7 @@ if (!empty($html)) {
 											}
 										} else {
 											$bus_con_part1 = $ex_con_part1->fetch_assoc();
-											$id_equipo = $bus_con_part1["id_equipo"];
+											$id_equipo = $bus_con_part1["id"];
 
 											if ($i == 0) {
 												$id_eq1_temp = $id_equipo;
@@ -330,7 +330,7 @@ if (!empty($html)) {
 								$regs_con_market1 = $ex_con_market1->num_rows;
 
 								if ($regs_con_market1 == '0') {
-									$con_market2 = "INSERT INTO p_futbol (id_web, league_id, start, avaible, url) VALUES ('$id_partido_inicial','$id_liga','$date_time','2017-01-01','$url_p_futbol')";
+									$con_market2 = "INSERT INTO games (id_web, league_id, start, avaible, url) VALUES ('$id_partido_inicial','$id_liga','$date_time','2017-01-01','$url_p_futbol')";
 									$ex_con_market2 = $conexion->query($con_market2);
 									if ($ex_con_market2) {
 										$id_p_futbol = $conexion->insert_id;
@@ -384,6 +384,7 @@ if (!empty($html)) {
 										$cons2 = "INSERT INTO competitors (code, game_id, team_id, bet_type_id, odd, link, provider) VALUES ('$codigo','$id_p_futbol','$leque[0]','$id_ta','$dividendo', '1', 'odds.football-data')";
 										$ex_cons2 = $conexion->query($cons2);
 										if ($ex_cons2) { } else {
+											echo $conexion->error;
 											echo "No se pudo registrar: $cons2 <br>";
 										}
 									} elseif ($nro_regs > 0) {
