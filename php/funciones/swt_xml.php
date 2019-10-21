@@ -27,7 +27,7 @@ if ($url_liga == "") {
 
 		case "football":
 			$id_categoria = "1";
-			$id_ta = "1";
+			$id_ta = "2";
 			break;
 		case "baseball":
 			$id_categoria = "2";
@@ -202,6 +202,8 @@ if (!empty($html)) {
 								if ($mesdf == "December") {
 									$mes_name = "12";
 								}
+
+
 
 								$fecha_market = $anyodf . "-" . $mes_name . "-" . $diadf;
 							} else {
