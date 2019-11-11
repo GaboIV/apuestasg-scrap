@@ -31,23 +31,23 @@
 		        break;
 		    case "baseball":
 		        $id_categoria = "22";
-		        $id_ta = "4";
+		        $id_ta = "2";
 		        break;		
 		    case "basketball":
 		        $id_categoria = "23";
-		        $id_ta = "2";
+		        $id_ta = "3";
 		        break;
 		    case "tennis":
 		        $id_categoria = "24";
-		        $id_ta = "6";
+		        $id_ta = "4";
 		        break;
 		    case "american-football":
 		        $id_categoria = "25";
-		        $id_ta = "3";
+		        $id_ta = "5";
 		        break;
 		    case "boxing":
 		        $id_categoria = "29";
-		        $id_ta = "5";
+		        $id_ta = "6";
 		        break;
 		    case "ice-hockey":
 		        $id_categoria = "26";
@@ -55,7 +55,7 @@
 		        break;
 		    case "rugby-union":
 		        $id_categoria = "28";
-		        $id_ta = "13";
+		        $id_ta = "8";
 		        break;
 		}		
 
@@ -88,7 +88,7 @@
 				$url_ajust = str_replace("%C3%BA", "Ãº", $url_modificada[1]);
 
 				if ($url_partido_2 == $url_ajust) {
-					$liga_nombre = utf8_decode(addslashes($titleee->nodeValue));
+					$liga_nombre = addslashes($titleee->nodeValue);
 					echo "Liga: $liga_nombre<br><br>";
 				}
 			}
@@ -106,7 +106,7 @@
 
 		if($title_h1->length > 0){
 			foreach($title_h1 as $titular){
-				$nombre_enc = utf8_decode(addslashes($titular->nodeValue));		
+				$nombre_enc = addslashes($titular->nodeValue);		
 
 				$liga_name = preg_replace('/\s\s+/', ' ', $nombre_enc);
 
@@ -123,7 +123,7 @@
 
 					if($pokemon_row->length > 0){
 						foreach($pokemon_row as $row){
-							$frase = utf8_decode(addslashes($row->nodeValue));
+							$frase = addslashes($row->nodeValue);
 							$frase = preg_replace('/\s\s+/', ' ', $frase);
 
 							$links= $row->getElementsByTagName('a');
@@ -131,7 +131,7 @@
 							$i = 0;
 
 							foreach($links as $a) {
-						        $url_partido = utf8_decode(addslashes($a->getAttribute('href')));
+						        $url_partido = addslashes($a->getAttribute('href'));
 
 						        if ($i == 0) {
 						        	$url_p_futbol = $url_partido;
@@ -153,9 +153,9 @@
 									$host= $_SERVER["HTTP_HOST"];
 
 									if ($host == 'localhost') {
-										$diadf = $div_fecha[2];
-										$mesdf = $div_fecha[3];
-										$anyodf = $div_fecha[4];
+										$diadf = $div_fecha[3];
+										$mesdf = $div_fecha[4];
+										$anyodf = $div_fecha[5];
 									} else {
 										$diadf = $div_fecha[2];
 										$mesdf = $div_fecha[3];
